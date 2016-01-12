@@ -55,6 +55,14 @@ class ChartJs extends Widget
      */
     public $type;
 
+
+    /**
+     * @var string the type of render to display. The possible options are:
+     * - "OnReady" : A standart type of rending on $(document).ready();
+     * - "Function" : Create as function
+     */
+    public $render = 'OnReady';
+
     /**
      * Initializes the widget.
      * This method will register the bootstrap asset bundle. If you override this method,
@@ -93,7 +101,16 @@ class ChartJs extends Widget
 
         ChartJsAsset::register($view);
 
-        $js = ";var chartJS_{$id} = new Chart(document.getElementById('{$id}').getContext('2d')).{$type}({$data}, {$options});";
-        $view->registerJs($js);
+        if($this->render == 'OnReady')
+        {
+            $js = ";var chartJS_{$id} = new Chart(document.getElementById('{$id}').getContext('2d')).{$type}({$data}, {$options});";
+            $view->registerJs($js);
+        } else if($this->render == 'Function') {
+            $view->registerJs("function drawChartJS_{$id} { new Chart(document.getElementById('{$id}').getContext('2d')).{$type}({$data}, {$options});}", View::POS_END);
+        } else {
+            throw new HttpException(500, 'Configuration ChartJs is failed. Render  type as "' . Html::encode($this->render) . '" not found.');
+        }
+        
+        
     }
 }
