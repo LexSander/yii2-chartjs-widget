@@ -47,34 +47,49 @@ documentation for the different types supported by the plugin.
 ```
 use dosamigos\chartjs\ChartJs;
 
-<?= ChartJs::widget([
-    'type' => 'Line',
-    'options' => [
-        'height' => 400,
-        'width' => 400
-    ],
-    'data' => [
-        'labels' => ["January", "February", "March", "April", "May", "June", "July"],
-        'datasets' => [
-            [
-                'fillColor' => "rgba(220,220,220,0.5)",
-                'strokeColor' => "rgba(220,220,220,1)",
-                'pointColor' => "rgba(220,220,220,1)",
-                'pointStrokeColor' => "#fff",
-                'data' => [65, 59, 90, 81, 56, 55, 40]
+<div class="tab-pane" id="chart2">
+    <div class="embed-responsive embed-responsive-2by1">
+        <?= ChartJs::widget([
+            'id' => 'myChart'
+            'type' => 'Line',
+            'render' => 'Function' // new property
+            'options' => [
+                'height' => 400,
+                'width' => 400
             ],
-            [
-                'fillColor' => "rgba(151,187,205,0.5)",
-                'strokeColor' => "rgba(151,187,205,1)",
-                'pointColor' => "rgba(151,187,205,1)",
-                'pointStrokeColor' => "#fff",
-                'data' => [28, 48, 40, 19, 96, 27, 100]
+            'data' => [
+                'labels' => ["January", "February", "March", "April", "May", "June", "July"],
+                'datasets' => [
+                    [
+                        'fillColor' => "rgba(220,220,220,0.5)",
+                        'strokeColor' => "rgba(220,220,220,1)",
+                        'pointColor' => "rgba(220,220,220,1)",
+                        'pointStrokeColor' => "#fff",
+                        'data' => [65, 59, 90, 81, 56, 55, 40]
+                    ],
+                    [
+                        'fillColor' => "rgba(151,187,205,0.5)",
+                        'strokeColor' => "rgba(151,187,205,1)",
+                        'pointColor' => "rgba(151,187,205,1)",
+                        'pointStrokeColor' => "#fff",
+                        'data' => [28, 48, 40, 19, 96, 27, 100]
+                    ]
+                ]
             ]
-        ]
-    ]
-]);
-?>
+        ]);
+        ?>
+    </div>
+</div>
+
+
+
 ```
+
+Fix Bootstrap tab feature
+-------------------------
+See property ```render```
+
+
 
 Further Information
 -------------------
